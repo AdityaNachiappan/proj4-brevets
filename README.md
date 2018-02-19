@@ -2,11 +2,8 @@
 
 Reimplement the RUSA ACP controle time calculator with flask and ajax.
 
-Credits to Michal Young.
+Credits to ADITYA NACHIAPPAN.
 
-## ACP controle times
-
-The algorithim for calculating 
 ## For users 
 The current RUSA controle time calculator is based on an underlying algorthim that divides each portion of your total 
 ride into checkpoints, and calculates how long you have to complete the checkpoint.
