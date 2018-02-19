@@ -14,35 +14,49 @@ import arrow
 #  same arguments.  Arguments are explained in the
 #  javadoc comments.
 #
-
+maxTable = [(200, 34), (400, 32), (600, 28), (1000,)]
+mTable = [(200, 34), (400, 32), (600, 28), (1000,)]
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
     """
-    Args:
-       control_dist_km:  number, the control distance in kilometers
-       brevet_dist_km: number, the nominal distance of the brevet
-           in kilometers, which must be one of 200, 300, 400, 600,
-           or 1000 (the only official ACP brevet distances)
-       brevet_start_time:  An ISO 8601 format date-time string indicating
-           the official start time of the brevet
     Returns:
        An ISO 8601 format date string indicating the control open time.
        This will be in the same time zone as the brevet start time.
     """
-    return arrow.now().isoformat()
+	 
+	hours = 0 
+	min = 0 
+	day = 0
+	for i in range(len(maxTable)):
+	    if maxTable[i][0] > control_dist_km:
+            buff = control_dist_km / maxTable[i][1]
+            hours = (buff//1)
+	        if(hours >= 24):
+                hours %= 24
+                day++ 							
+	        min = (buff%1)
+
+	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
+
 
 
 def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
     """
-    Args:
-       control_dist_km:  number, the control distance in kilometers
-          brevet_dist_km: number, the nominal distance of the brevet
-          in kilometers, which must be one of 200, 300, 400, 600, or 1000
-          (the only official ACP brevet distances)
-       brevet_start_time:  An ISO 8601 format date-time string indicating
-           the official start time of the brevet
     Returns:
        An ISO 8601 format date string indicating the control close time.
        This will be in the same time zone as the brevet start time.
     """
-    return arrow.now().isoformat()
+    
+	hours = 0 
+	min = 0 
+	day = 0
+	for i in range(len(maxTable)):
+	    if maxTable[i][0] > control_dist_km:
+            buff = control_dist_km / maxTable[i][1]
+            hours = (buff//1)
+	        if(hours >= 24):
+                hours %= 24
+                day++ 							
+	        min = (buff%1)
+
+	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
