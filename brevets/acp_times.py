@@ -14,7 +14,7 @@ import arrow
 #  same arguments.  Arguments are explained in the
 #  javadoc comments.
 #
-maxTable = [(200, 34), (400, 32), (600, 28), (1000,)]
+maxTable = [(200, 34), (400, 32), (600, 30), (1000,28), (1300,26)]
 mTable = [(200, 34), (400, 32), (600, 28), (1000,)]
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
@@ -23,7 +23,11 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control open time.
        This will be in the same time zone as the brevet start time.
     """
-	 
+#check input 
+if 
+
+
+
 	hours = 0 
 	min = 0 
 	day = 0
