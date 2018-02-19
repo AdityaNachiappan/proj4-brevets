@@ -33,7 +33,7 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
             hours = (buff//1)
 	        if(hours >= 24):
                 hours %= 24
-                day++ 							
+                day+=1							
 	        min = (buff%1)
 
 	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
@@ -56,7 +56,7 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
             hours = (buff//1)
 	        if(hours >= 24):
                 hours %= 24
-                day++ 							
+                day+=1						
 	        min = (buff%1)
 
 	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
