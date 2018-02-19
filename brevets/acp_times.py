@@ -23,21 +23,21 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control open time.
        This will be in the same time zone as the brevet start time.
     """
-#check input 
-if 
-
-
-
-	hours = 0 
-	min = 0 
-	day = 0
-	for i in range(len(maxTable)):
-	    if maxTable[i][0] > control_dist_km:
+    #check input 
+	if 0 > control_dist_km:
+	    print("unrecognized control point measurement" + control_dist_km)
+	if control_dist_km > brevet_dist_km: 
+	    print("Form Entry Error") 
+	    print("the control points should be specified in ascending order")
+	
+	
+    for i in range(len(maxTable)):
+	if maxTable[i][0] > control_dist_km:
             buff = control_dist_km / maxTable[i][1]
             hours = (buff//1)
 	        if(hours >= 24):
-                hours %= 24
-                day+=1							
+                    hours %= 24
+                    day+=1							
 	        min = (buff%1)
 
 	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
@@ -51,6 +51,12 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
        This will be in the same time zone as the brevet start time.
     """
     
+	if 0 > control_dist_km:
+	    print("unrecognized control point measurement" + control_dist_km)
+	if control_dist_km > brevet_dist_km: 
+	    print("Form Entry Error") 
+	    print("the control points should be specified in ascending order")
+	
 	hours = 0 
 	min = 0 
 	day = 0
@@ -63,4 +69,4 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
                 day+=1						
 	        min = (buff%1)
 
-	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
+	return arrow.get(brevet_start_time).shift(minutes = min, hours = hours, day = day).isoformat()
