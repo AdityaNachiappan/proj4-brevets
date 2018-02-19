@@ -15,7 +15,7 @@ import arrow
 #  javadoc comments.
 #
 maxTable = [(200, 34), (400, 32), (600, 30), (1000,28), (1300,26)]
-mTable = [(200, 34), (400, 32), (600, 28), (1000,)]
+mTable = [(200, 15), (400, 15), (600, 15), (1000,11.428), (1300,13.333)]
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
     """
