@@ -53,7 +53,7 @@ def _calc_times():
     """
     app.logger.debug("Got a JSON request")
     km = request.args.get('km', 999, type=float)
-    bDistance = request.args.get('bDistance', type = float)
+    bDist = request.args.get('bDist', type = float)
     bTime = request.args.get('bTime', type = float)
     bDate = request.args.get('bDate', type = float)
     
@@ -62,8 +62,8 @@ def _calc_times():
     app.logger.debug("request.args: {}".format(request.args))
     #Now takes correct distance/time
    
-    open_time = acp_times.open_time(km, bDistance, bTime)
-    close_time = acp_times.close_time(km, bDistance, bTime)
+    open_time = acp_times.open_time(km, bDist, bTime)
+    close_time = acp_times.close_time(km, bDist, bTime)
     result = {"open": open_time, "close": close_time}
     return flask.jsonify(result=result)
 
