@@ -14,8 +14,8 @@ import arrow
 #  same arguments.  Arguments are explained in the
 #  javadoc comments.
 #
-maxTable = [(200, 34), (400, 32), (600, 30), (1000,28), (1300,26)]
-mTable = [(200, 15), (400, 15), (600, 15), (1000,11.428), (1300,13.333)]
+maxTable = [(1300,26), (1000,28), (600, 30), (400, 32), (200, 34)] 
+minTable = [(1300,26), (1000,13.333)), (600, 11.428), (400, 15), (200, 15)] 
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
     """
@@ -23,25 +23,30 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control open time.
        This will be in the same time zone as the brevet start time.
     """
-    #check input 
+   	#check input 
+	#Basic error check
+	#Make sure the distance entered is positive, shorter than total brevet dist
+	#Return the time + 1 hour by default for 
 	if 0 > control_dist_km:
 	    print("unrecognized control point measurement" + control_dist_km)
 	if control_dist_km > brevet_dist_km: 
 	    print("Form Entry Error") 
 	    print("the control points should be specified in ascending order")
-	
-	
-    for i in range(len(maxTable)):
-	if maxTable[i][0] > control_dist_km:
-            buff = control_dist_km / maxTable[i][1]
-            hours = (buff//1)
-	        if(hours >= 24):
-                    hours %= 24
-                    day+=1							
-	        min = (buff%1)
+	if control_dist_km == 0: 
+	return arrow.get(startTime).shift(hours =+ 1).isoformat()
 
+    time = 0 
+	
+    for distance, speed in maxTable
+	if distance > control_dist_km:
+	    time =+ control_dist_km / speed
+            hour , min = divmod(time, 1)     			#seperate hours and min
+	    min = ((time%1)*60) 			#convert from decimal to minutes 
+	    	if(hours >= 24):		
+                    hours %= 24					
+                    day =+ 1					
+	#take start time, add time passed and return 
 	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
-
 
 
 def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
@@ -51,22 +56,27 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
        This will be in the same time zone as the brevet start time.
     """
     
+	#check input 
+	#Basic error check
+	#Make sure the distance entered is positive, shorter than total brevet dist
+	#Return the time + 1 hour by default for 
 	if 0 > control_dist_km:
 	    print("unrecognized control point measurement" + control_dist_km)
 	if control_dist_km > brevet_dist_km: 
 	    print("Form Entry Error") 
 	    print("the control points should be specified in ascending order")
-	
-	hours = 0 
-	min = 0 
-	day = 0
-	for i in range(len(maxTable)):
-	    if maxTable[i][0] > control_dist_km:
-            buff = control_dist_km / maxTable[i][1]
-            hours = (buff//1)
-	        if(hours >= 24):
-                hours %= 24
-                day+=1						
-	        min = (buff%1)
+	if control_dist_km == 0: 
+	return arrow.get(startTime).shift(hours =+ 1).isoformat()
 
-	return arrow.get(brevet_start_time).shift(minutes = min, hours = hours, day = day).isoformat()
+    time = 0 
+	
+    for distance, speed in minTable
+	if distance > control_dist_km:
+	    time += control_dist_km / speed
+            hour , min = divmod(time, 1)     			#seperate hours and min
+	    min = ((time%1)*60) 			#convert from decimal to minutes 
+	    	if(hours >= 24):		
+                    hours %= 24					
+                    day =+ 1					
+	#take start time, add time passed and return 
+	return arrow.get(startTime).shift(minutes = min, hours = hours, day = day).isoformat()
