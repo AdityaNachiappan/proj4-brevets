@@ -129,7 +129,7 @@
     var brevDist = $("#begin_date").val(); 
 	  
 	  
-    $.getJSON(TIME_CALC_URL, { km: km , bdist:}, 
+    $.getJSON(TIME_CALC_URL, { km: km , bdist: bDist:bdist, bTime:bTime}, 
       // response handler
       function(data) {
          var times = data.result;
