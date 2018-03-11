@@ -126,8 +126,13 @@
     var km = control.find("input[name='km']").val();
     var open_time_field = control.find("input[name='open']");
     var close_time_field = control.find("input[name='close']");
-    var brevDist = $("#begin_date").val(); 
-	  
+    
+    var brevetDist = $("#brevet_dist_km").val();
+    var beginTime = $("#begin_time").val();
+    var beginDate = $("#begin_date").val();
+    console.log(beginTime);
+    console.log(beginDate);
+
 	  
     $.getJSON(TIME_CALC_URL, { km: km , bdist: bDist:bdist, bTime:bTime}, 
       // response handler
