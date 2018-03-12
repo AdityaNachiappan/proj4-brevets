@@ -1,0 +1,7 @@
+web:
+  build: .
+  command: flask_brevets.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/brevets
